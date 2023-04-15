@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import Header from "../components/Header";
+import Slogan from "../components/Slogan";
 import FeedbackPage from "./FeedbackPage";
 
 
@@ -7,9 +8,6 @@ import FeedbackPage from "./FeedbackPage";
 const HomePage = () => {
 
     const [items, setItems] = useState([]);
-
-
-    
 
     const [query, setQuery] = useState([]);
   
@@ -19,7 +17,7 @@ const HomePage = () => {
     }
     const filteredProducts = items.filter((item) => item.name.toLowerCase().includes(query));
     const fetchServices = async() => {
-        const response = await fetch('https://exam.avavion.ru/api/services');
+        const response = await fetch('https://flowers.avavion.ru/api/products');
         
         const data = await response.json();
 
@@ -32,7 +30,8 @@ const HomePage = () => {
 
     return (
         <div className="home">
-
+            <Header />
+            <Slogan />
             <section id="catalog" className="catalog">
                 <div className="catalog_container container">
                     <div className="catalog_header">
@@ -42,7 +41,7 @@ const HomePage = () => {
                             {/* <a href="#" className="link-style">Игры</a>
                             <a href="#" className="link-style">Программы</a> */}
                         </div>
-                        <div className="search-box">
+                        <div className="\">
                             <div className="search-box-img image-box">
                             </div>
                             <input 
@@ -54,27 +53,16 @@ const HomePage = () => {
                         </div>
                     </div>
                     <div className="catalog_content">
-                        {/* {
-                            filteredProducts.length ?
-                            (
-                                filteredProducts.map((product) => {
-                                    return(product.name);
-                                })
-                            )
-                            :
-                            <h2>По вашему запросу "{query}" ничего не найдено</h2>
-                        } */}
                         {
                              filteredProducts.length ? 
                              (
-                                filteredProducts.map((service) => {
+                                filteredProducts.map((product) => {
                                     return (
-                                        <div key={service.id}>
-                                            <img src={service.image_url} alt="" />
-                                            <h2>{service.name}</h2>
-                                            <p>{service.content}</p>
-                        
-                                            <NavLink to={`/services/${service.id}`} >Перейти</NavLink>
+                                        <div className="filter" key={product.id}>
+                                            <img src={product.preview_image} alt="" />
+                                            <h2>{product.name}</h2>
+                                            <p className="product_text">{product.text}</p>
+                                            <p className="price">Цена: {product.price}</p>
                                         </div>
                                     );
                                 })

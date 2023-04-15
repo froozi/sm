@@ -3,11 +3,16 @@ import Swal from "sweetalert2";
 
 const FeedbackPage = () => {
     const [form, setForm] = useState({
-        email: "",
-        first_name: "",
-        last_name: "",
+        // email: "",
+        // first_name: "",
+        // last_name: "",
+        // message: "",
+        // service_id: 1
+        full_name: "",
+        addres: "",
         message: "",
-        service_id: 1
+        service_id: 1,
+        email: "",
     });
 
     const [services, setServices] = useState([]);
@@ -87,35 +92,22 @@ const FeedbackPage = () => {
             <div className="feedback_box-container container">
                 <div className="feedback_text-box">
                     <h1>Подписка на рассылку</h1>
-                    <p>
-                    Lorem ipsum dolor sit amet consectetur. Eget mattis proin mauris orci gravida. Mauris bibendum aliquam ultrices augue mauris lacus. Dui ut eleifend egestas amet nec luctus morbi. Egestas tincidunt libero nisi eget ullamcorper. Lorem ipsum dolor sit amet consectetur.
-                    </p>
                     <form onSubmit={onSubmitHandle.bind(this)} className="feedback_actions">
-                        <div className="search-box">
-                            <input 
-                            onChange={onChangeForm.bind(this)}
-                            value={form.email} 
-                            type="email" 
-                            name="email" 
-                            id="email"
-                            placeholder="Email..." 
-                            className="search-box_input" />
-                        </div>
                         <input 
                             onChange={onChangeForm.bind(this)}
                             value={form.full_name} 
                             type="text" 
-                            name="last_name" 
-                            id="last_name"
-                            placeholder="fulname..." 
+                            name="full_name" 
+                            id="full_name"
+                            placeholder="fullname..." 
                             className="search-box_input" />
                         <input 
                             onChange={onChangeForm.bind(this)}
-                            value={form.first_name} 
+                            value={form.address} 
                             type="text" 
-                            name="first_name" 
-                            id="last_name"
-                            placeholder="fulname..." 
+                            name="address" 
+                            id="address"
+                            placeholder="address..." 
                             className="search-box_input" />
                         <input 
                             onChange={onChangeForm.bind(this)}
@@ -125,6 +117,17 @@ const FeedbackPage = () => {
                             id="message"
                             placeholder="message..." 
                             className="search-box_input" />
+                        <div className="search-box">
+                            <input 
+                            onChange={onChangeForm.bind(this)}
+                            value={form.email} 
+                            type="email" 
+                            name="email" 
+                            id="email"
+                            placeholder="email..." 
+                            className="search-box_input" />
+                        </div>
+                        
                         <button onClick={onClickHandle.bind(this)} className="button-style">Отправить</button>
                     </form>
                 </div>
